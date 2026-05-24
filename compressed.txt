@@ -1,0 +1,186 @@
+=== Contacts ===
+CMD: Classes | action_property | action_title_with | add | make_new | perform_action_with | remove | responds_to | save | should_enable_action_with
+OBJ:
+address: city,country,country code,formatted address,label,state,street,zip
+contact info: label,value
+entry: selected
+group: name
+instant message: service name,service type,user name
+person: birth date,company,department,first name,home page,image,job title,last name,maiden name,middle name,name,nickname,note,organization,phonetic first name,phonetic last name,phonetic middle name,suffix,title,vcard
+social profile: service name,url,user identifier,user name
+
+=== Keynote ===
+CMD: Classes | accept_slide_switcher | add_chart | cancel_slide_switcher | clear | delete | duplicate | export | hide_slide_switcher | make_image_slides | make_new | merge | move_slide_switcher_backward | move_slide_switcher_forward | remove_password | responds_to | set_password | show_next | show_previous | show_slide_switcher | sort | start | start_from | start_slideshow | stop | stop_slideshow | unmerge
+OBJ:
+slide layout: name
+slide: base layout,body showing,default body item,default title item,presenter notes,skipped,slide number,title showing,transition properties
+theme: name
+document: auto loop,auto play,auto restart,current slide,document theme,height,maximum idle duration,password protected,slide numbers showing,width
+audio clip: clip volume,file name,repetition method
+shape: background fill type,object text,opacity,reflection showing,reflection value,rotation
+image: description,file,file name,opacity,reflection showing,reflection value,rotation
+group: height,position,rotation,width
+line: end point,reflection showing,reflection value,rotation,start point
+movie: file name,movie volume,opacity,reflection showing,reflection value,repetition method,rotation
+table: cell range,column count,footer row count,header column count,header row count,name,row count,selection range
+text item: background fill type,object text,opacity,reflection showing,reflection value,rotation
+cell: column,formatted value,formula,row,value
+
+=== Mail ===
+CMD: Classes | GetURL | bounce | check_for_new_mail_for | delete | duplicate | extract_address_from | extract_name_from | forward | import_Mail_mailbox_at | mailto | move | perform_mail_action_with_messages_in_mailboxes | redirect | reply | responds_to | send | synchronize_with
+OBJ:
+attachment: file name
+paragraph: color,font,size
+word: color,font,size
+character: color,font,size
+attribute run: color,font,size
+outgoing message: message signature,sender,subject,visible
+ldap server: enabled,host name,name,port,scope,search base
+OLD message editor: OLD compose message
+message viewer: drafts mailbox,inbox,junk mailbox,mailbox list visible,outbox,preview pane is visible,selected mailboxes,selected messages,sent mailbox,sort column,sorted ascending,trash mailbox,visible columns,visible messages
+signature: content,name
+message: all headers,background color,content,date received,date sent,deleted status,flag index,flagged status,junk mail status,mailbox,message id,message size,read status,reply to,sender,source,subject,was forwarded,was redirected,was replied to
+account: account directory,account type,authentication,delivery account,email addresses,empty junk messages frequency,empty junk messages on quit,empty trash frequency,empty trash on quit,enabled,full name,move deleted messages to trash,name,password,port,server name,user name,uses ssl
+imap account: compact mailboxes when closing,message caching,store deleted messages on server,store drafts on server,store junk mail on server,store sent messages on server
+pop account: big message warning size,delayed message deletion interval,delete mail on server,delete messages when moved from inbox
+smtp server: account type,authentication,enabled,name,password,port,server name,user name,uses ssl
+mailbox: account,container,name,unread count
+rule: all conditions must be met,color message,copy message,delete message,enabled,forward message,forward text,highlight text using color,mark flag index,mark flagged,mark read,move message,name,play sound,redirect message,reply text,run script,should copy message,should move message,stop evaluating rules
+rule condition: expression,header,qualifier,rule type
+recipient: address,name
+header: content,name
+mail attachment: MIME type,downloaded,file size,name
+
+=== Messages ===
+CMD: Classes | login | logout | send_to
+OBJ:
+participant: account,first name,full name,handle,last name,name
+account: connection status,description,enabled,service type
+chat: account,name
+file transfer: account,direction,file path,file progress,file size,name,participant,started,transfer status
+
+=== Notes ===
+CMD: Classes | open_note_location | responds_to | show_separately
+OBJ:
+account: default folder,name,upgraded
+folder: container,name,shared
+note: body,container,name,password protected,plaintext,shared
+attachment: URL,container,content identifier,name,shared
+
+=== Numbers ===
+CMD: Classes | add_column_after | add_column_before | add_row_above | add_row_below | clear | delete | export | make_new | merge | remove | remove_password | responds_to | set_password | sort | transpose | unmerge
+OBJ:
+audio clip: clip volume,file name,repetition method
+shape: background fill type,object text,opacity,reflection showing,reflection value,rotation
+image: description,file,file name,opacity,reflection showing,reflection value,rotation
+group: height,position,rotation,width
+line: end point,reflection showing,reflection value,rotation,start point
+movie: file name,movie volume,opacity,reflection showing,reflection value,repetition method,rotation
+table: cell range,column count,filtered,footer row count,header column count,header columns frozen,header row count,header rows frozen,name,row count,selection range
+text item: background fill type,object text,opacity,reflection showing,reflection value,rotation
+cell: column,formatted value,formula,row,value
+document: active sheet,document template,password protected
+sheet: name
+template: name
+
+=== Pages ===
+CMD: Classes | clear | delete | export | make_new | merge | remove_password | responds_to | set_password | sort | unmerge
+OBJ:
+audio clip: clip volume,file name,repetition method
+shape: background fill type,object text,opacity,reflection showing,reflection value,rotation
+image: description,file,file name,opacity,reflection showing,reflection value,rotation
+group: height,position,rotation,width
+line: end point,reflection showing,reflection value,rotation,start point
+movie: file name,movie volume,opacity,reflection showing,reflection value,repetition method,rotation
+table: cell range,column count,footer row count,header column count,header row count,name,row count,selection range
+text item: background fill type,object text,opacity,reflection showing,reflection value,rotation
+cell: column,formatted value,formula,row,value
+document: body text,current page,document body,document template,facing pages,password protected
+template: name
+section: body text
+page: body text
+placeholder text: tag
+window: two up
+
+=== Photos ===
+CMD: Classes | add_to | delete | duplicate | export_to | import_into | make_new | next_slide | pause_slideshow | previous_slide | responds_to | resume_slideshow | search_for | spotlight | start_slideshow_using | stop_slideshow
+OBJ:
+media item: altitude,date,description,favorite,filename,height,keywords,location,name,size,width
+container: name
+moment: name
+
+=== QuickTimePlayerX ===
+CMD: Classes | export | new_audio_recording | new_movie_recording | new_screen_recording | open_URL | pause | play | present | responds_to | resume | show_remote_hud | start | step_backward | step_forward | stop | trim
+OBJ:
+video recording device: name
+audio recording device: name
+audio compression preset: name
+movie compression preset: name
+screen compression preset: name
+document: audio volume,current audio compression,current camera,current microphone,current movie compression,current screen compression,current time,data rate,data size,duration,looping,muted,natural dimensions,playing,presenting,rate
+
+=== Reminders ===
+CMD: Classes | responds_to
+OBJ:
+account: name
+list: color,container,emblem,name
+reminder: allday due date,body,completed,completion date,container,due date,flagged,name,priority,remind me date
+
+=== Safari ===
+CMD: Classes | add_reading_list_item | dispatch_message_to_extension | do_JavaScript | email_contents_of | responds_to | search_the_web_in | show_bookmarks | show_credit_card_settings | show_extensions_preferences | show_privacy_report | sync_all_plist_to_disk
+OBJ:
+tab: URL,index,name,source,text,visible
+window: current tab
+document: URL,source,text
+
+=== Shortcuts ===
+CMD: Classes | responds_to | run
+OBJ:
+shortcut: accepts input,action count,color,folder,icon,name,subtitle
+folder: name
+
+=== Terminal ===
+CMD: Classes | close | delete | do_script | duplicate | get_URL | make_new | move | print_with_properties | quit_saving | responds_to | save
+OBJ:
+window: bounds,closeable,frame,index,miniaturizable,miniaturized,name,origin,position,resizable,size,visible,zoomable,zoomed
+settings set: background color,bold text color,clean commands,cursor color,custom title,font antialiasing,font name,font size,name,normal text color,number of columns,number of rows,title displays custom title,title displays device name,title displays settings name,title displays shell path,title displays window size
+tab: background color,bold text color,busy,clean commands,contents,current settings,cursor color,custom title,font antialiasing,font name,font size,history,normal text color,number of columns,number of rows,processes,selected,title displays custom title,title displays device name,title displays file name
+
+=== Music ===
+CMD: Classes | add_to | back_track | close | convert | delete | download | duplicate | export | fast_forward | make_new | move | next_track | open_location | pause | play | playpause | previous_track | print | refresh | resume | reveal | rewind | run | save | search | select | stop
+OBJ:
+AirPlay device: active,available,kind,network address,protected,selected,sound volume,supports audio,supports video
+artwork: data,description,downloaded,format,kind,raw data
+audio CD playlist: artist,compilation,composer,disc count,disc number,genre,year
+audio CD track: location
+browser window: view
+encoder: format
+EQ preset: band 1,band 10,band 2,band 3,band 4,band 5,band 6,band 7,band 8,band 9,modifiable,preamp,update tracks
+file track: location
+item: class,container,index,name,persistent ID,properties
+playlist: description,disliked,duration,favorited,name,size,special kind,time,visible
+playlist window: view
+source: capacity,free space,kind
+track: EQ,album,album artist,album disliked,album favorited,album rating,album rating kind,artist,bit rate,bookmark,bookmarkable,bpm,category,cloud status,comment,compilation,composer,database ID,date added,description
+URL track: address
+user playlist: genius,shared,smart
+window: bounds,closeable,collapseable,collapsed,full screen,position,resizable,visible,zoomable,zoomed
+
+=== iCal ===
+CMD: Classes | GetURL | create_calendar_with_name | make_new | reload_calendars | responds_to | save | switch_view_to | view_calendar_at
+OBJ:
+calendar: calendarIdentifier,color,description,name,writable
+display alarm: trigger date,trigger interval
+mail alarm: trigger date,trigger interval
+sound alarm: sound file,sound name,trigger date,trigger interval
+open file alarm: filepath,trigger date,trigger interval
+attendee: display name,email,participation status
+event: allday event,description,end date,excluded dates,location,recurrence,sequence,stamp date,start date,status,summary,uid,url
+
+=== scripting ===
+CMD: Classes | close | copy_selection | cut_selection | delete | duplicate | execute | go_back | go_forward | make_new | move | paste_selection | print | redo | reload | responds_to | save | select_all | stop | undo | view_source
+OBJ:
+window: active tab,active tab index,bounds,closeable,given name,index,minimizable,minimized,mode,name,resizable,visible,zoomable,zoomed
+tab: URL,loading,title
+bookmark folder: index,title
+bookmark item: URL,index,title

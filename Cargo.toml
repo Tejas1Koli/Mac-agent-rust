@@ -1,0 +1,21 @@
+[package]
+name = "mac-agent-rust"
+version = "0.1.0"
+edition = "2024"
+description = "An AI research agent built in Rust"
+authors = ["Tejas <tejas.koli.2k183742@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["ai", "agent", "llm", "research", "rust","mac"]
+categories = ["command-line-utilities", "science"]
+repository = "https://github.com/Tejas1Koli/rust-ai-agent"  # add this
+homepage = "https://github.com/Tejas1Koli/rust-ai-agent"
+
+[dependencies]
+anyhow = "1.0.102"
+rig = "0.37.0"
+rig-core = "0.37.0"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.150"
+thiserror = "2.0.18"
+tokio = { version = "1.52.3", features = ["full"] }
