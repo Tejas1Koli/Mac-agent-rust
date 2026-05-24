@@ -40,7 +40,7 @@ async fn main() -> anyhow::Result<()> {
     └─────────────────────────────────────────────────────┘
     ");
 
-    println!("macOS agent ready (gemma4:e2b via Ollama)");
+    println!("macOS agent ready");
     println!("Type a prompt, or 'quit' to exit\n");
 
     let mut history: Vec<Message> = Vec::new();

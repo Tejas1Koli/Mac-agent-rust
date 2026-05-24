@@ -106,55 +106,50 @@ impl Tool for AppleScriptTool {
         "applescript_tool only supports macOS",
     )));
         }
+    let max_attempts = 7;
+    let base_backoff_ms = 500;
     #[cfg(target_os = "macos")]
-    {
-        let max_attempts: usize = 3;
-        let base_backoff_ms: u64 = 200;
+    for attempt in 1..=max_attempts {
+    let timeout = std::time::Duration::from_secs(args.timeout_secs);
+    println!("Attempt {}/{}", attempt, max_attempts);
 
-        for attempt in 1..=max_attempts {
-            let timeout = std::time::Duration::from_secs(args.timeout_secs);
-            
-            println!("Running AppleScript:\n{}", args.script);
-            let child = Command::new("osascript")
-                .args(["-e", &args.script])
-                .output();
+    let child = Command::new("osascript")
+        .args(["-e", &args.script])
+        .output();
 
-
-            match tokio::time::timeout(timeout, child).await {
-                Err(_) => {
-                    // timed out
-                    if attempt == max_attempts {
-                        return Err(AppleScriptError::Timeout(args.timeout_secs));
-                    }
-                }
-                Ok(Err(e)) => {
-                    // IO/launch error
-                    if attempt == max_attempts {
-                        return Err(AppleScriptError::Io(e));
-                    }
-                }
-                Ok(Ok(out)) => {
-                    if out.status.success() {
-                        return Ok(AppleScriptOutput {
-                            output: String::from_utf8_lossy(&out.stdout).trim().to_string(),
-                        });
-                    } else {
-                        // Script returned non-zero: treat as script failure (don't retry by default)
-                        return Err(AppleScriptError::ScriptFailed {
-                            code: out.status.code().unwrap_or(-1),
-                            stderr: String::from_utf8_lossy(&out.stderr).trim().to_string(),
-                        });
-                    }
-                }
+    match tokio::time::timeout(timeout, child).await {
+        Err(_) => {
+            if attempt == max_attempts {
+                return Err(AppleScriptError::Timeout(args.timeout_secs));
             }
-            let backoff_ms = base_backoff_ms * (1u64 << ((attempt - 1) as u32));
-            tokio::time::sleep(std::time::Duration::from_millis(backoff_ms)).await;
-
         }
+        Ok(Err(e)) => {
+            if attempt == max_attempts {
+                return Err(AppleScriptError::Io(e));
+            }
+        }
+        Ok(Ok(out)) => {
+            if out.status.success() {
+                return Ok(AppleScriptOutput {
+                    output: String::from_utf8_lossy(&out.stdout).trim().to_string(),
+                });
+            } else if attempt == max_attempts {
+                // only give up on last attempt
+                return Err(AppleScriptError::ScriptFailed {
+                    code: out.status.code().unwrap_or(-1),
+                    stderr: String::from_utf8_lossy(&out.stderr).trim().to_string(),
+                });
+            }
+            // else: fall through to backoff and retry
+        }
+    }
+
+    let backoff_ms = base_backoff_ms * (1u64 << ((attempt - 1) as u32));
+    tokio::time::sleep(std::time::Duration::from_millis(backoff_ms)).await;
+}
         unreachable!();
 
         
     
     }
     }
-}

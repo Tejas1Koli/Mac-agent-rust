@@ -10,9 +10,9 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
-            model: "gemma4:e2b".to_string(),
+            model: "gemma4:e4b-mlx".to_string(),
             ollama_host: "http://localhost:11434".to_string(),
-            temperature: 0.7,
+            temperature: 0.5,
         }
     }
 }

@@ -39,7 +39,7 @@ mac-agent-rust run
    ```
 
 2. **Pull the LLM text model:**
-   The default model is `gemma4:e2b` 
+   The default model is `gemma4:e4b-mlx"` 
    ```bash
    ollama pull gemma4:e2b 
    ```
