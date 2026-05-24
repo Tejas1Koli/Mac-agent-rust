@@ -62,121 +62,135 @@ RESPONSE RULES:
 - On repeated failure:
   - concise explanation
   - exact final error
+-- ══════════════════════════════════════════
+-- SHELL
+-- ══════════════════════════════════════════
+do shell script "uptime"                              -- system uptime
+do shell script "open -a Safari"                     -- launch app by name
+do shell script "networksetup -getairportnetwork en0" -- current wifi name
+do shell script "curl -s ifconfig.me"                -- public IP
+do shell script "ls ~/Desktop"                       -- list desktop files
+do shell script "mdfind 'report.pdf'"                -- spotlight search
+do shell script "lsof -i :3000"                      -- what's on port 3000
+do shell script "screencapture ~/Desktop/shot.png"   -- screenshot to file
 
-PATTERNS:
-
--- shell
-do shell script "uptime"
-do shell script "open -a Safari"
-do shell script "networksetup -getairportnetwork en0"
-do shell script "curl -s ifconfig.me"
-do shell script "ls ~/Desktop"
-do shell script "mdfind 'report.pdf'"
-do shell script "lsof -i :3000"
-do shell script "screencapture ~/Desktop/shot.png"
-
--- safari
+-- ══════════════════════════════════════════
+-- SAFARI  [requires: Develop > Allow JavaScript from Apple Events]
+-- ══════════════════════════════════════════
 tell application "Safari" to activate
-tell application "Safari" to open location "https://chatgpt.com"
-tell application "Safari" to return URL of current tab of front window
-tell application "Safari" to return name of current tab of front window
-tell application "Safari" to return URL of every tab of front window
-tell application "Safari" to do JavaScript "document.title" in current tab of front window
-tell application "Safari" to do JavaScript "document.body.innerText" in current tab of front window
-tell application "Safari" to do JavaScript "window.scrollTo(0,document.body.scrollHeight)" in current tab of front window
-
--- notes
-tell application "Notes" to activate
-tell application "Notes" to make new note with properties {name:"Quick Note", body:"Hello"}
-
--- spotify
-tell application "Spotify" to playpause
-tell application "Spotify" to next track
-tell application "Spotify" to return name of current track
-
--- terminal
-tell application "Terminal" to activate
-tell application "Terminal" to do script "pwd"
-
--- finder
-tell application "Finder" to return name of every file of desktop
-tell application "Finder" to open folder "Downloads" of home
-tell application "Finder" to return selection
-
--- system
-tell application "System Events" to return name of first process whose frontmost is true
-display notification "Done" with title "Agent"
-display dialog "Continue?" buttons {"Cancel","OK"} default button "OK"
-
--- clipboard
-return the clipboard
-set the clipboard to "Copied"
-
--- volume
-return output volume of (get volume settings)
-set volume output volume 50
-set volume with output muted
-
--- mail
-tell application "Mail"
-	set m to make new outgoing message with properties {subject:"Project Update", content:"Hello"}
-	tell m
-		make new to recipient with properties {address:"team@example.com"}
-	end tell
-	activate
-end tell
-
-tell application "Mail"
-	return unread count of inbox
-end tell
-
-tell application "Mail"
-	set r to {}
-	repeat with m in messages of inbox
-		copy subject of m to end of r
-	end repeat
-	return r
-end tell
-
--- calendar
-tell application "Calendar"
-	tell calendar "Home"
-		make new event with properties {summary:"Meeting", start date:(current date), end date:((current date)+3600)}
-	end tell
-end tell
-
-tell application "Calendar"
-	tell calendar "Home"
-		set e to first event whose start date > (current date)
-		return summary of e
-	end tell
-end tell
-
--- chaining
-tell application "Safari"
-	open location "https://github.com"
-	open location "https://chatgpt.com"
-end tell
+tell application "Safari" to open location "https://example.com"         -- navigate to 
+tell application "Safari" to return URL of current tab of front window   -- get URL
+tell application "Safari" to return name of current tab of front window  -- get title
+tell application "Safari" to return URL of every tab of front window     -- all tab URLs
 
 tell application "Safari"
-	set u to URL of every tab of front window
+    tell document 1
+        do JavaScript "document.title"                              -- page title via JS
+        do JavaScript "document.body.innerText"                    -- all visible text
+        do JavaScript "window.scrollTo(0,document.body.scrollHeight)" -- scroll to bottom
+    end tell
 end tell
 
-set AppleScript's text item delimiters to linefeed
-set t to u as text
 
+
+tell application "Safari"
+    set u to URL of every tab of front window  -- collect tab URLs into list
+end tell
+set AppleScript's text item delimiters to linefeed  -- join list with newlines
 tell application "Notes"
-	make new note with properties {name:"Saved Tabs", body:t}
+    make new note with properties {name:"Saved Tabs", body:(u as text)}
 end tell
 
--- retry
+-- ══════════════════════════════════════════
+-- NOTES
+-- ══════════════════════════════════════════
+tell application "Notes" to activate
+tell application "Notes"
+    make new note with properties {name:"Quick Note", body:"Hello"}  -- name = title, body = content
+end tell
+
+-- ══════════════════════════════════════════
+-- TERMINAL
+-- ══════════════════════════════════════════
+tell application "Terminal" to activate
+tell application "Terminal"
+    do script "pwd" in front window  -- run command in existing window, not a new one
+end tell
+
+-- ══════════════════════════════════════════
+-- FINDER
+-- ══════════════════════════════════════════
+tell application "Finder" to activate
+tell application "Finder" to return name of every file of desktop       -- list desktop files
+tell application "Finder" to open (path to downloads folder)            -- locale-safe path
+tell application "Finder" to return selection                           -- currently selected items
+
+-- ══════════════════════════════════════════
+-- SYSTEM
+-- ══════════════════════════════════════════
+tell application "System Events" to return name of first process whose frontmost is true  -- active app name
+display notification "Done" with title "Agent"                                             -- banner notification
+set r to button returned of (display dialog "Continue?" buttons {"Cancel","OK"} default button "OK")  -- capture which button
+
+-- ══════════════════════════════════════════
+-- CLIPBOARD
+-- ══════════════════════════════════════════
+return the clipboard           -- read clipboard
+set the clipboard to "Copied"  -- write to clipboard
+
+-- ══════════════════════════════════════════
+-- VOLUME
+-- ══════════════════════════════════════════
+return output volume of (get volume settings)  -- get current volume 0-100
+set volume output volume 50                    -- set volume to 50
+set volume with output muted                   -- mute (use `without` to unmute)
+
+-- ══════════════════════════════════════════
+-- MAIL
+-- ══════════════════════════════════════════
+tell application "Mail" to activate
+tell application "Mail"
+    set m to make new outgoing message with properties {subject:"Project Update", content:"Hello", visible:true}  -- visible:true shows the compose window
+    tell m to make new to recipient with properties {address:"team@example.com"}
+end tell
+
+tell application "Mail" to return unread count of inbox  -- unread count
+
+tell application "Mail"
+    set r to {}
+    repeat with m in (get messages of inbox)  -- `get` forces evaluation, avoids errors on large mailboxes
+        copy subject of m to end of r
+    end repeat
+    return r  -- list of subject lines
+end tell
+
+-- ══════════════════════════════════════════
+-- CALENDAR
+-- ══════════════════════════════════════════
+tell application "Calendar" to activate
+tell application "Calendar"
+    tell calendar "Home"
+        make new event at end with properties {summary:"Meeting", start date:(current date), end date:((current date) + 3600)}  -- `at end` required in modern macOS
+    end tell
+end tell
+
+tell application "Calendar"
+    tell calendar "Home"
+        return summary of (first event whose start date > (current date))  -- next upcoming event title
+    end tell
+end tell
+
+-- ══════════════════════════════════════════
+-- RETRY LOOP
+-- ══════════════════════════════════════════
+set result to ""
 repeat 3 times
-	try
-		tell application "Safari"
-			return URL of current tab of front window
-		end tell
-	on error
-		delay 0.5
-	end try
-end repeat 
-"#;
+    try
+        tell application "Safari"
+            set result to URL of current tab of front window  -- may fail if tab is still loading
+        end tell
+        exit repeat   -- success → stop
+    on error
+        delay 0.5     -- not ready yet → wait 500ms → retry
+    end try
+end repeat"#;
