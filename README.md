@@ -22,7 +22,15 @@ A terminal-based macOS automation agent written in Rust. It uses [Ollama](https:
 * `serde` and `serde_json` for serialization.
 * `anyhow` and `thiserror` for error handling.
 
-## Setup
+
+## Direct Usage(for cli interface)
+```bash
+cargo install mac-agent-rust
+mac-agent-rust run
+```
+
+
+## Setup(for dev)
 
 1. **Clone the repository:**
    ```bash
@@ -31,25 +39,22 @@ A terminal-based macOS automation agent written in Rust. It uses [Ollama](https:
    ```
 
 2. **Pull the LLM text model:**
-   The default model is `gemma4:e2b` (not configurable for now)
+   The default model is `gemma4:e2b` 
    ```bash
    ollama pull gemma4:e2b 
    ```
 
 ## Configuration
 
-Configuration cant be changedf for now
+Configuration cant be changed for now (for only cli interface)
 
 * `OLLAMA_HOST`: URL to your Ollama instance (default: `http://localhost:11434`)
 * `MODEL`: The LLM model to use (default: `gemma4:e2b`)
 * `TEMPERATURE`: The creativity/randomness of the model (default: `0.7`)
 
-## Usage
 
 
-```bash
-mac-agent-rust run
-```
+
 
 
 ### Special Commands
