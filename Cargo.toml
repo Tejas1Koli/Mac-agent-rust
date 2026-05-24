@@ -2,14 +2,16 @@
 name = "mac-agent-rust"
 version = "0.1.0"
 edition = "2024"
-description = "An AI research agent built in Rust"
+description = "AI-powered macOS automation agent using AppleScript, built with Rig and Ollama"
 authors = ["Tejas <tejas.koli.2k183742@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["ai", "agent", "llm", "research", "rust","mac"]
-categories = ["command-line-utilities", "science"]
-repository = "https://github.com/Tejas1Koli/rust-ai-agent"  # add this
-homepage = "https://github.com/Tejas1Koli/rust-ai-agent"
+keywords = ["ai", "agent", "applescript", "macos", "ollama"]
+categories = ["command-line-utilities", "os","ai"]
+repository = "https://github.com/Tejas1Koli/Mac-agent-rust"
+homepage = "https://github.com/Tejas1Koli/Mac-agent-rust"
+exclude = [".env", "target/", "*.log"]
+
 
 [dependencies]
 anyhow = "1.0.102"
