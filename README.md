@@ -1,3 +1,6 @@
+[![Demo](https://img.youtube.com/vi/vHZVEoR2ais/maxresdefault.jpg)](https://youtu.be/vHZVEoR2ais)
+
+
 # mac-agent-rust 
 
 A terminal-based macOS automation agent written in Rust. It uses [Ollama](https://ollama.com/) and the [Rig](https://github.com/0xPlaygrounds/rig) library to translate natural language commands into AppleScript, allowing you to control your Mac using conversational AI.
