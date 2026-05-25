@@ -24,7 +24,7 @@ async fn main() -> anyhow::Result<()> {
    
 
     let agent = client?
-        .agent(config.model.as_str())                      // change to gemma2:4b if needed
+        .agent(config.model.as_str())                  
         .preamble(&preamble)
         .default_max_turns(10)
         .tool(AppleScriptTool)

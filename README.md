@@ -41,7 +41,7 @@ mac-agent-rust run
 2. **Pull the LLM text model:**
    The default model is `gemma4:e4b-mlx"` 
    ```bash
-   ollama pull gemma4:e2b 
+   ollama pull gemma4:e4b-mlx
    ```
 
 ## Configuration
@@ -49,7 +49,7 @@ mac-agent-rust run
 Configuration cant be changed for now (for only cli interface)
 
 * `OLLAMA_HOST`: URL to your Ollama instance (default: `http://localhost:11434`)
-* `MODEL`: The LLM model to use (default: `gemma4:e2b`)
+* `MODEL`: The LLM model to use
 * `TEMPERATURE`: The creativity/randomness of the model (default: `0.7`)
 
 
