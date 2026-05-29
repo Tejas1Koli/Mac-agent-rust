@@ -1,4 +1,4 @@
-[![Demo](https://img.youtube.com/vi/vHZVEoR2ais/maxresdefault.jpg)](https://youtu.be/vHZVEoR2ais)
+
 
 
 # mac-agent-rust 
